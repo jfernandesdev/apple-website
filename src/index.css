@@ -16,10 +16,30 @@ body {
   background: #000;
   border-color: #3b3b3b;
   user-select: none;
+  -webkit-font-smoothing: antialised;
 }
 
 canvas {
   touch-action: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4d4d57;
+   border-radius: 0px;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .screen-max-width {
