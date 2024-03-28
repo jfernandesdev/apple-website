@@ -1,15 +1,33 @@
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
+import VideoCarousel from "./VideoCarousel";
 import { watchImg, rightImg } from '../utils';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Highlights = () => {
   useGSAP(() => {
-    gsap.to("#title", { opacity: 1, y: 0 })
+    gsap.to("#title", {
+      opacity: 1,
+      y: 0,
+      scrollTrigger: {
+        trigger: "#highlights",
+        start: "top-=150 top-=50",
+        toggleActions: "play reverse play reverse"
+      },
+    });
+
     gsap.to(".link", { 
       opacity: 1, 
       y: 0,
       duration: 1, 
-      stagger: 0.25
+      stagger: 0.25,
+      scrollTrigger: {
+        trigger: "#highlights",
+        start: "top-=150 top-=50",
+        toggleActions: "play reverse play reverse"
+      },
     })
   }, []);
 
@@ -39,6 +57,8 @@ const Highlights = () => {
             </p>
           </div>
         </div>
+
+        <VideoCarousel />
       </div>
     </section>
   )
