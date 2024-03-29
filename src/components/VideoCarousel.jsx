@@ -139,14 +139,18 @@ const VideoCarousel = () => {
 
   useEffect(() => {
     gsap.to(controlWrapperRef.current, {
-      y: 0, 
-      duration: 0.5,
+      y: 0,
       opacity: 1,
       scrollTrigger: {
         trigger: "#highlights",
         start: 'top top',
-        end: "bottom bottom",
+        end: 'bottom+=75 bottom',
         scrub: true,
+        onLeave: () => {
+          gsap.to(controlWrapperRef.current, {
+            opacity: 0,
+          });
+        }
       },
     });
   }, []);
@@ -199,7 +203,7 @@ const VideoCarousel = () => {
         ))}
       </div>
 
-      <div ref={controlWrapperRef} className="fixed flex bottom-10 left-1/2 transform -translate-x-1/2 opacity-0">
+      <div ref={controlWrapperRef} className="fixed flex bottom-5 left-1/2 transform -translate-x-1/2 opacity-0">
         <div className="flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full">
           {videoRef.current.map((_, i) => (
             <span
