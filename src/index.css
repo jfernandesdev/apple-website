@@ -15,7 +15,6 @@ body {
   height: 100%;
   background: #000;
   border-color: #3b3b3b;
-  user-select: none;
   -webkit-font-smoothing: antialised;
 }
 
@@ -33,6 +32,11 @@ body {
 
 canvas {
   touch-action: none;
+}
+
+main {
+  touch-action: pan-y;
+  overflow-y: auto;
 }
 
 ::-webkit-scrollbar {
