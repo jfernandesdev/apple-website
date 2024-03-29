@@ -123,10 +123,10 @@ const VideoCarousel = () => {
       }
 
       const animUpdate = () => {
-        anim.progress(
-          videoRef.current[videoId].currentTime / 
-          hightlightsSlides[videoId].videoDuration
-        );
+        const currentVideo = videoRef.current[videoId];
+        if (currentVideo && videoId !== 0) {
+          anim.progress(currentVideo.currentTime / hightlightsSlides[videoId].videoDuration);
+        }
       };
 
       if(isPlaying) {
@@ -138,21 +138,32 @@ const VideoCarousel = () => {
   }, [videoId, startPlay, isPlaying]);
 
   useEffect(() => {
-    gsap.to(controlWrapperRef.current, {
-      y: 0,
-      opacity: 1,
-      scrollTrigger: {
-        trigger: "#highlights",
-        start: 'top top',
-        end: 'bottom+=75 bottom',
-        scrub: true,
-        onLeave: () => {
-          gsap.to(controlWrapperRef.current, {
-            opacity: 0,
-          });
-        }
-      },
-    });
+    if (window.innerWidth >= 760) {
+      gsap.to(controlWrapperRef.current, {
+        y: 0,
+        opacity: 1,
+        position: "fixed",
+        left: 0,
+        right: 0,
+        bottom: 25,
+        scrollTrigger: {
+          trigger: "#highlights",
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: true,
+          onLeave: () => {
+            gsap.to(controlWrapperRef.current, {
+              opacity: 0,
+            });
+          }
+        },
+      });
+    } else {
+      gsap.to(controlWrapperRef.current, {
+        y: 0,
+        opacity: 1,
+      });
+    }
   }, []);
 
   return (
@@ -203,7 +214,7 @@ const VideoCarousel = () => {
         ))}
       </div>
 
-      <div ref={controlWrapperRef} className="fixed flex bottom-5 left-1/2 transform -translate-x-1/2 opacity-0">
+      <div ref={controlWrapperRef} className="flex flex-center justify-center mt-10 opacity-0">
         <div className="flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full">
           {videoRef.current.map((_, i) => (
             <span
