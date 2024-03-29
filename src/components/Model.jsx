@@ -4,7 +4,7 @@ import gsap from "gsap";
 import * as THREE from "three";
 import { View } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { animateWithGsapTimeline } from "../utils/animations";
+import { animateWithGsapTimeline, animateWithGsap } from "../utils/animations";
 
 import ModelView from "./ModelView";
 import { yellowImg } from "../utils";
@@ -46,11 +46,11 @@ const Model = () => {
   }, [size, largeRotation, tl, smallRotation]);
 
   useGSAP(() => {
-    gsap.to("#heading", {
+    animateWithGsap('#heading', {
       y: 0,
-      opacity: 1,
+      opacity: 1
     })
-  }, [])
+  }, []);
 
   return (
     <section id="model-section" className="common-padding">

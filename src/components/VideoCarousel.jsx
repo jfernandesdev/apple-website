@@ -124,7 +124,7 @@ const VideoCarousel = () => {
 
       const animUpdate = () => {
         const currentVideo = videoRef.current[videoId];
-        if (currentVideo && videoId !== 0) {
+        if (currentVideo) {
           anim.progress(currentVideo.currentTime / hightlightsSlides[videoId].videoDuration);
         }
       };
