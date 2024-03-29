@@ -4,6 +4,7 @@ import Highlights from "./components/Highlights";
 import Model from "./components/Model";
 import Features from "./components/Features";
 import HowItWorks from "./components/HowItWorks";
+import CameraChameleon from "./components/CameraIguana";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       <Model />
       <Features />
       <HowItWorks />
+      <CameraChameleon />
       <Footer />
     </main>
   )

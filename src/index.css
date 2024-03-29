@@ -126,6 +126,14 @@ main {
     @apply text-center font-semibold text-3xl text-gray-100 opacity-0 max-md:mb-10
   }
 
+  .title-section {
+    @apply text-4xl md:text-7xl font-semibold
+  }
+
+  .subtitle-section {
+    @apply text-gray font-semibold text-xl md:text-2xl py-10
+  }
+
   .hiw-title {
     @apply text-4xl md:text-7xl font-semibold text-center
   }
@@ -133,7 +141,7 @@ main {
   .hiw-subtitle {
     @apply text-gray font-semibold text-xl md:text-2xl py-10 text-center
   }
-
+  
   .hiw-video {
     @apply absolute w-[95%] h-[90%] rounded-[24px] md:rounded-[56px] overflow-hidden
   }
