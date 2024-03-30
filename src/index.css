@@ -34,9 +34,9 @@ canvas {
   touch-action: none;
 }
 
-main {
-  touch-action: pan-y;
-  overflow-y: auto;
+#root {
+  touch-action: pan-y !important;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

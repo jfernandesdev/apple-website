@@ -12,7 +12,6 @@ const VideoCarousel = () => {
   const videoRef = useRef([]);
   const videoSpanRef = useRef([]);
   const videoDivRef = useRef([]);
-  const controlWrapperRef = useRef(null);
 
   const [loadedData, setLoadedData] = useState([]);
   const [video, setVideo] = useState({
@@ -138,32 +137,44 @@ const VideoCarousel = () => {
   }, [videoId, startPlay, isPlaying]);
 
   useEffect(() => {
-    if (window.innerWidth >= 760) {
-      gsap.to(controlWrapperRef.current, {
-        y: 0,
-        opacity: 1,
-        position: "fixed",
-        left: 0,
-        right: 0,
-        bottom: 25,
-        scrollTrigger: {
-          trigger: "#highlights",
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: true,
-          onLeave: () => {
-            gsap.to(controlWrapperRef.current, {
-              opacity: 0,
-            });
-          }
-        },
-      });
+    const initializeCarouselControls = () => {
+      if (window.innerWidth >= 760) {
+        gsap.to("#carouselControls", {
+          y: 0,
+          opacity: 1,
+          position: "fixed",
+          left: 0,
+          right: 0,
+          bottom: 25,
+          scrollTrigger: {
+            trigger: "#highlights",
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: true,
+            onLeave: () => {
+              gsap.to("#carouselControls", {
+                opacity: 0,
+              });
+            }
+          },
+        });
+      } else {
+        gsap.to("#carouselControls", {
+          y: 0,
+          opacity: 1,
+        });
+      }
+    };
+
+    if (document.readyState === "complete") {
+      initializeCarouselControls();
     } else {
-      gsap.to(controlWrapperRef.current, {
-        y: 0,
-        opacity: 1,
-      });
+      window.addEventListener("load", initializeCarouselControls);
     }
+
+    return () => {
+      window.removeEventListener("load", initializeCarouselControls);
+    };
   }, []);
 
   return (
@@ -177,10 +188,10 @@ const VideoCarousel = () => {
                   id="video"
                   playsInline={true}
                   preload="auto"
-                  muted
+                  muted={true}
                   className={`${ 
                     list.id === 2 && 'translate-x-44'}
-                    pointer-event-none
+                    pointer-event-none object-cover object-left-top w-full h-full
                   `}
                   ref={(el) => (videoRef.current[index] = el)}
                   onEnded={() => {
@@ -214,7 +225,7 @@ const VideoCarousel = () => {
         ))}
       </div>
 
-      <div ref={controlWrapperRef} className="flex flex-center justify-center mt-10 opacity-0">
+      <div id="carouselControls" className="flex flex-center justify-center mt-10 opacity-0">
         <div className="flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full">
           {videoRef.current.map((_, i) => (
             <span
