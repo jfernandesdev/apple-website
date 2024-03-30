@@ -2,7 +2,7 @@
 
 Projeto pessoal para estudo de animações, iluminação e perspectiva na web: recriação parcial do site de divulgação do iPhone 15 Pro da Apple. Este projeto visa fixar conceitos de animações com GSAP e efeitos 3D do Three.js.
 
-<img src='https://i.ibb.co/d29bdWc/macbook-pro-and-iphone-15-pro-mockup-66080b204f906df50e2577ae.png' width='75%' />
+<img src='https://github.com/jfernandesdev/apple-website/blob/837e0862b308b0b5699b235f96aea2fc97c463d4/public/mockup-project.png' width='75%' />
 
 ### Principais tecnologias utilizadas: 🚀
 
